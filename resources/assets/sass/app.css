@@ -1,0 +1,57 @@
+@import url(../datepiker/css/bootstrap-datetimepicker.css);
+@import url(../bootstrap/css/bootstrap.min.css);
+@import url(../multiple-select/multiple-select.css);
+@import url(../monthly/monthly.css);
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  box-sizing: border-box; }
+
+.center {
+  text-align: center; }
+
+header {
+  color: #fff;
+  background: -moz-linear-gradient(90deg, #121212 14%, #4F4F4F 90%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, 90deg, color-stop(14%, 121212), color-stop(90%, 4F4F4F));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(90deg, #121212 14%, #4F4F4F 90%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(90deg, #121212 14%, #4F4F4F 90%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(90deg, #121212 14%, #4F4F4F 90%);
+  /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1');
+  /* for IE */
+  background: linear-gradient(90deg, #121212 14%, #4F4F4F 90%);
+  /* W3C */ }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  color: #fff;
+  background: -moz-linear-gradient(90deg, #757575 14%, #A8A8A8 90%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, 90deg, color-stop(14%, 757575), color-stop(90%, A8A8A8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(90deg, #757575 14%, #A8A8A8 90%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(90deg, #757575 14%, #A8A8A8 90%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(90deg, #757575 14%, #A8A8A8 90%);
+  /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1');
+  /* for IE */
+  background: linear-gradient(90deg, #757575 14%, #A8A8A8 90%);
+  /* W3C */ }
+
+.ms-parent {
+  width: 100% !important; }
+
+/*# sourceMappingURL=app.css.map */
