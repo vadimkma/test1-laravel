@@ -10,17 +10,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 
 
 class UserController extends Controller
 {
-
-    public function index(){
-
-    }
-
+    /**
+     * Controller public function authorization  user
+     *
+     * @return redirect to home or view login auth.login.blade.php
+     */
     public function login(){
         if(Auth::check()) {
             return Redirect::intended('home');
@@ -63,6 +62,11 @@ class UserController extends Controller
             'success' => isset($success) ? $success : null ));
     }
 
+    /**
+     * Controller public function registration doctor
+     *
+     * @return redirect to home or view register form auth.doctorSignUp.blade.php
+     */
     public function doctor(){
         if(Auth::check()) {
             return Redirect::intended('home');
@@ -117,7 +121,11 @@ class UserController extends Controller
     }
 
 
-
+    /**
+     * Controller public function registration patient
+     *
+     * @return redirect to home or view register form auth.patientSignUp.blade.php
+     */
     public function patient(){
         if(Auth::check()) {
             return Redirect::intended('home');
@@ -169,8 +177,6 @@ class UserController extends Controller
                 }
             }
         }
-
-        $doctors="";
         $doctors = DB::table('users')
             ->select('id', 'name', 'surname')
             ->where('idTypeUser', '=', 1)->get();

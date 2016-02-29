@@ -1,5 +1,4 @@
 @include('layout.header')
-
 <h1 class="center">{!! Auth::user()->name.' '.Auth::user()->surname  !!}</h1>
 <hr>
 <br>

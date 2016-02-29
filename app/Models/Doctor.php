@@ -4,26 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 class Doctor extends Model
 {
     /**
- * The table associated with the model.
- *
- * @var string
- */
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'users';
 
+    /**
+     * Function get doctor visits by id user
+     *
+     * @param int $id its id doctor
+     *
+     * @return doctor visits list
+     */
     public function gerVisits($id){
         $visits = DB::table('visits')->select('users.name', 'users.surname', 'visits.id', 'visits.startVisit', 'visits.endVisit', 'visits.comment', 'visits.active')
                    ->join('users', 'visits.idPatient', '=', 'users.id')
-                    ->where('visits.idDoctor', '=', Auth::user()->id)->get();
+                    ->where('visits.idDoctor', '=', $id)
+                    ->orderBy('visits.startVisit', 'asc')
+                    ->get();
         return $visits;
     }
 
-
+    /**
+     * Function get doctors permission by id doctor
+     *
+     * @param int $id its id doctor
+     *
+     * @return doctors list
+     */
     public function gerDoctorPermission($id){
         $doctors = DB::table('permissions')->select('users.name', 'users.surname', 'users.id')
             ->join('users', 'users.id', '=', 'permissions.inFrom')
@@ -33,6 +47,13 @@ class Doctor extends Model
         return $doctors;
     }
 
+    /**
+     * Function get doctors without user doctor
+     *
+     * @param int $id its id doctor
+     *
+     * @return doctors list
+     */
     public function gerDoctorsListWithoutUser($id){
         $doctors = DB::table('users')->select('users.name', 'users.surname', 'users.id')
             ->where('users.idTypeUser', '=', 1)
@@ -45,6 +66,13 @@ class Doctor extends Model
         return $doctorArray;
     }
 
+    /**
+     * Function get doctor selected permission by user doctor
+     *
+     * @param int $id its id doctor
+     *
+     * @return doctors selected list
+     */
     public function gerDoctorsUserPermissions($id){
         $doctorsSelected = DB::table('permissions')->select('users.name', 'users.surname', 'users.id')
             ->join('users', 'users.id', '=', 'permissions.inTo')
@@ -58,6 +86,13 @@ class Doctor extends Model
         return $doctorsSelectedArray;
     }
 
+    /**
+     * Function get doctor visits by id doctor
+     *
+     * @param int $id its id doctor
+     *
+     * @return $visits list or false
+     */
     public function gerDoctorVisitById($id){
         $doctors = DB::table('permissions')->select('users.name', 'users.surname', 'users.id')
             ->join('users', 'users.id', '=', 'permissions.inFrom')
@@ -68,6 +103,7 @@ class Doctor extends Model
             $visits = DB::table('visits')->select('users.name', 'users.surname', 'visits.id', 'visits.startVisit', 'visits.endVisit', 'visits.comment', 'visits.active')
                 ->join('users', 'visits.idPatient', '=', 'users.id')
                 ->where('visits.idDoctor', '=', $id)
+                ->orderBy('visits.startVisit', 'asc')
                 ->get();
             return $visits;
         }else{
@@ -75,15 +111,30 @@ class Doctor extends Model
         }
     }
 
+    /**
+     * Function check busy doctor
+     *
+     * @param object $user its User
+     *
+     * @return $visits list
+     */
     public function gerVisitsBetweenTime($user, $startDate, $endDate){
         $visits = DB::table('visits')->select('users.name', 'users.surname', 'visits.id', 'visits.startVisit', 'visits.endVisit', 'visits.comment', 'visits.active')
             ->join('users', 'visits.idPatient', '=', 'users.id')
             ->where('visits.idDoctor', '=', $user->id)
             ->whereBetween('visits.startVisit', array($startDate, $endDate ))
+            ->orderBy('visits.startVisit', 'asc')
             ->get();
         return $visits;
     }
 
+    /**
+     * Function get work time doctor between two date
+     *
+     * @param array $visits object Visit
+     *
+     * @return int $sumHours
+     */
     public function gerDoctorWorkTime($visits){
         $sumHours=0;
         foreach($visits as $visit){

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Doctor;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -16,7 +14,9 @@ class PermissionController extends Controller
 {
 
     /**
+     * Controller public function gets the permission information to another doctor
      *
+     * @return view permissions permissions.blade.php
      */
     public function index()
     {
@@ -31,6 +31,11 @@ class PermissionController extends Controller
         return Redirect::intended('home');
     }
 
+    /**
+     * Controller public function update the permission information to another doctor
+     *
+     * @return redirect to home
+     */
     public function create(){
         if(Auth::check()) {
             if (Auth::user()->idTypeUser == 1) {

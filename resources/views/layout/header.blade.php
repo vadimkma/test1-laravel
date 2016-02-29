@@ -4,7 +4,7 @@
     <title><?php // if($title){ echo $title;}?></title>
     <link href="{{ URL::asset('../resources/assets/sass/app.css')}}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="{{ URL::asset('../resources/assets/monthly/monthly.js')}}"></script>
+    <!--<script src="{{ URL::asset('../resources/assets/monthly/monthly.js')}}"></script>-->
 
 </head>
 <body>

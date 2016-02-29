@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 center">
-                    autor: Vadim Kudryavtsev
+                    © 2016 hospital
                 </div>
             </div>
         </div>
@@ -17,9 +17,6 @@
     <script src="{{ URL::asset('../resources/assets/datepiker/js/moment.js')}}"></script>
     <script src="{{ URL::asset('../resources/assets/datepiker/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{ URL::asset('../resources/assets/multiple-select/multiple-select.js')}}"></script>
-
-
-
 
     <script src="{{ URL::asset('../resources/assets/js/script.js')}}"></script>
 </body>

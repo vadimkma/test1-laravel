@@ -118,14 +118,7 @@ if(isset($sumHours) && $sumHours != null){?>
     @endforeach
 </table>
 <script type="text/javascript">
-   /* $(window).load( function() {
 
-        $('#mycalendar').monthly({
-            mode: 'event',
-            xmlUrl:"{{ URL::asset('../resources/assets/xmls/'.Auth::user()->id.'/events.xml')}}"
-        });
-
-    });*/
 </script>
 <script type="text/javascript">
     $(function () {
@@ -142,9 +135,6 @@ if(isset($sumHours) && $sumHours != null){?>
         $("#datetimepicker6").on("dp.change", function (e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
 
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            //$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });
     });
 </script>

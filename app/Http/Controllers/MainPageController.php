@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Patient;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Visit;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -16,8 +13,12 @@ use Illuminate\Support\Facades\View;
 
 class MainPageController extends Controller{
 
+    /**
+     * Controller public function for check which view to show the user
+     *
+     * @return view patient patient.blade.php, doctor  doctor.blade.php, welcome welcome.blade.php
+     */
     public function index(){
-
         if(Auth::check()) {
             if(Auth::user()->idTypeUser==1){
                 if(Input::has('startDate')){

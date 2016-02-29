@@ -32,11 +32,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Function save doctor in database
+     *
+     * @return boolean
+     */
     public function signup(){
         $this->password = Hash::make($this->password);
         return $this->save();
     }
 
+
+    /**
+     * Function save patient in database
+     *
+     * @return boolean
+     */
     public function signupPatient(){
         $this->password = Hash::make($this->password);
         return $this->save();

@@ -2,28 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Visit;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use DateTime;
-//use Faker\Provider\DateTime;
 
 
 class VisitController extends Controller{
 
-    public function index(){
-
-    }
-
+    /**
+     * Controller public function for edit comment from visit by id
+     *
+     * @param int $id visit id
+     *
+     * @return redirect to home or view visit edit form visitEdit.blade.php
+     */
     public function edit($id)
     {
         if(Auth::check()) {
+
             $visit = new Visit();
+            if($visit->checkAccessDoctorVisit($id, Auth::user()->id)){
+                return Redirect::to('home');
+            }
             $visit = $visit->getVisit($id);
 
             if (Input::has('comment')) {
@@ -53,20 +57,38 @@ class VisitController extends Controller{
         return Redirect::to('home');
     }
 
-
+    /**
+     * Controller public function for cancel visit by id visit
+     *
+     * @param int $id visit id
+     *
+     * @return redirect to home
+     */
     public function cancel($id)
     {
         if(Auth::check()) {
             $visit = new Visit();
+            if($visit->checkAccessVisit($id, Auth::user()->id)){
+                return Redirect::to('home');
+            }
             $visit->cancelVisit($id);
         }
         return Redirect::to('home');
     }
 
+    /**
+     * Controller public function for create new visit
+     *
+     * @return redirect to home or view form visitCreate visitEdit.blade.php
+     */
     public function create()
     {
         if (Auth::check()) {
             $user = Auth::user();
+            if($user->idTypeUser!=2){
+                return Redirect::to('home');
+            }
+
             $visit = new Visit;
 
             if (Input::has('startDate')) {
@@ -106,13 +128,9 @@ class VisitController extends Controller{
                     }
                 }
             }
-
             return View::make('visitCreate', array('user' => $user,
                 'errors' => isset($errors) ? $errors : null));
         }
         return Redirect::to('home');
     }
-
-
-
 }

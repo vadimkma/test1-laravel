@@ -11,10 +11,6 @@
 |
 */
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -53,7 +49,6 @@ Route::group(['middleware' => ['web']], function () {
         Auth::logout();
         return Redirect::intended('home');
     });
-
 });
 
 Menu::make('userNav', function($menu){
@@ -66,16 +61,3 @@ Menu::make('mainNav', function($menu){
     $menu->add('Patient register',    'registerPatient');
     $menu->add('Doctor register', 'registerDoctor');
 });
-
-
-
-
-
-
-
-
-
-
-//Route::get('doctor', array('uses' => 'DoctorController@index'));
-//Route::get('visits', array('uses' => 'DoctorController@visits'));
-

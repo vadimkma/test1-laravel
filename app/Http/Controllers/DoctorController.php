@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Doctor;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -13,7 +11,9 @@ class DoctorController extends Controller
 {
 
     /**
+     * Controller public function get all doctors list
      *
+     * @return view doctorsList doctorsList.blade.php
      */
     public function doctorsList()
     {
@@ -30,7 +30,11 @@ class DoctorController extends Controller
     }
 
     /**
+     * Controller public function get doctor visits list
      *
+     * @param int $id doctor id
+     *
+     * @return view doctorView doctorView.blade.php
      */
     public function doctorVisits($id)
     {
@@ -38,11 +42,12 @@ class DoctorController extends Controller
             if (Auth::user()->idTypeUser == 1) {
                 $doctor = new Doctor();
                 $visits = $doctor->gerDoctorVisitById($id);
-                if ($visits != false) {
-                    return view("doctorView", ['visits' => $visits]);
-                } else {
+                if($visits == false){
                     return Redirect::intended('home');
                 }
+
+                return view("doctorView", ['visits' => $visits]);
+
             } else {
                 return Redirect::intended('home');
             }

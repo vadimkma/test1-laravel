@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Patient;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -12,7 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 class PatientController extends Controller{
 
     /**
+     * Controller public function get patients list
      *
+     * @return view patientList patientList.blade.php
      */
     public function patientsList(){
         if(Auth::check()) {
@@ -28,7 +28,11 @@ class PatientController extends Controller{
     }
 
     /**
+     * Controller public function get patient visits list by id patient
      *
+     * @param int $id patient id
+     *
+     * @return view patientVisits patientVisits.blade.php
      */
     public function patientVisits($id){
         if(Auth::check()) {
